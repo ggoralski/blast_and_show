@@ -2,9 +2,8 @@
 
 ## Overview
 
-This program performs a BLAST search between query and subject sequences, then visualizes the results in multiple formats (SVG, PDF, PNG). The program accepts various input types including FASTA files, GenBank files, and GenBank accession numbers.
+This program performs a BLAST search between query and subject sequences, then visualizes the results in multiple formats (SVG, PDF, PNG). See the `EXAMPLE_results` folder for example. The program accepts various input types including FASTA files, GenBank files, and GenBank accession numbers.
 **Warning**: It is created for plastid/mitochondrial genomes or shorter sequences. It was not tested e.g., for eukaryotic chromosomes.
-
 ## Features
 
 - **Flexible Input**: Accepts query and subject sequences from GenBank files, FASTA files, or accession numbers

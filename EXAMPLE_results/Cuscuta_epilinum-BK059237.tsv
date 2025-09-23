@@ -1,0 +1,197 @@
+nr	type	name	start	end	note	qualifier	product	qualifier_note	plastid-derived	strand
+2	gene	mttB	7395	8199					False	-1.0
+3	CDS	mttB	7395	8199					False	-1.0
+4	gene	nad2	15694	130236					False	-1.0
+5	CDS	nad2	15694	130236					False	-1.0
+6	exon	nad2[5]	15694	15882					False	-1.0
+7	exon	nad2[4]	17273	17846					False	-1.0
+8	exon	nad2[3]	19633	19794					False	-1.0
+9	gene	trnY-GTA	20309	20392					False	-1.0
+10	tRNA	trnY-GTA	20309	20392	anticodon:GTA				False	-1.0
+11	gene	trnN-GTT	21200	21272					False	-1.0
+12	tRNA	trnN-GTT	21200	21272	anticodon:GTT				False	-1.0
+13	gene	atp4	21991	22570					False	-1.0
+14	CDS	atp4	21991	22570					False	-1.0
+15	gene	nad4L	22698	23001					False	-1.0
+16	CDS	nad4L	22698	23001					False	-1.0
+17	gene	rps12	26040	26418					False	-1.0
+18	CDS	rps12	26040	26418					False	-1.0
+19	gene	nad3	26466	26823					False	-1.0
+20	CDS	nad3	26466	26823					False	-1.0
+21	gene	nad1	36074	388780					False	
+22	CDS	nad1	36074	388780					False	
+23	exon	nad1[3]	36074	36266					False	-1.0
+24	exon	nad1[2]	37417	37500					False	-1.0
+25	gene	rps1	38350	39004					False	-1.0
+26	CDS	rps1	38350	39004					False	-1.0
+27	gene	sdh4	39094	39559					False	-1.0
+28	CDS	sdh4	39094	39559					False	-1.0
+29	gene	cox3	39486	40284					False	-1.0
+30	CDS	cox3	39486	40284					False	-1.0
+31	gene	atp8	40985	41462					False	-1.0
+32	CDS	atp8	40985	41462					False	-1.0
+33	gene	ccmFc2	43000	46317					False	-1.0
+34	CDS	ccmFc2	43000	46317					False	-1.0
+35	exon	ccmFc2[2]	43000	43562					False	-1.0
+36	misc_feature	plastid-derived	44220	44825	plastid-derived				True	1.0
+37	exon	ccmFc2[1]	45847	46317					False	-1.0
+38	gene	nad7	47952	52935					False	-1.0
+39	CDS	nad7	47952	52935					False	-1.0
+40	exon	nad7[4]	47952	48214					False	-1.0
+41	exon	nad7[3]	49838	50549					False	-1.0
+42	exon	nad7[2]	51877	51946					False	-1.0
+43	exon	nad7[1]	52792	52935					False	-1.0
+44	gene	rps12	59527	59905					False	1.0
+45	CDS	rps12	59527	59905					False	1.0
+46	gene	nad4L	62944	63247					False	1.0
+47	CDS	nad4L	62944	63247					False	1.0
+48	gene	ccmC	77720	78446					False	-1.0
+49	CDS	ccmC	77720	78446					False	-1.0
+50	gene	rps13	78721	79072					False	-1.0
+51	CDS	rps13	78721	79072					False	-1.0
+52	gene	trnM-CAT	85438	85511					False	-1.0
+53	tRNA	trnM-CAT	85438	85511	anticodon:CAT				False	-1.0
+54	misc_feature	plastid-derived	86787	86934	plastid-derived				True	1.0
+55	misc_feature	plastid-derived	86981	88601	plastid-derived				True	1.0
+56	gene	trnG-GCC	90588	90660					False	1.0
+57	tRNA	trnG-GCC	90588	90660	anticodon:GCC				False	1.0
+58	gene	trnS-GCT	92238	92326					False	1.0
+59	tRNA	trnS-GCT	92238	92326	anticodon:GCT				False	1.0
+60	gene	trnF-GAA	92681	92755					False	1.0
+61	tRNA	trnF-GAA	92681	92755	anticodon:GAA				False	1.0
+62	gene	trnP-TGG	92990	93065					False	1.0
+63	tRNA	trnP-TGG	92990	93065	anticodon:TGG				False	1.0
+64	exon	nad1[4]	93433	93492					False	1.0
+65	gene	matR	94133	96089					False	1.0
+66	CDS	matR	94133	96089					False	1.0
+67	exon	nad1[5]	96969	97228					False	1.0
+68	gene	trnM-CAT	108852	108926					False	1.0
+69	tRNA	trnM-CAT	108852	108926	anticodon:CAT				False	1.0
+70	misc_feature	plastid-derived	109820	110276	plastid-derived				True	1.0
+71	gene	trnK-TTT	115204	115277					False	1.0
+72	tRNA	trnK-TTT	115204	115277	anticodon:TTT				False	1.0
+73	gene	nad6	123329	124034					False	-1.0
+74	CDS	nad6	123329	124034					False	-1.0
+75	gene	rps10	124420	125700					False	-1.0
+76	CDS	rps10	124420	125700					False	-1.0
+77	exon	rps10[2]	124420	124533					False	-1.0
+78	exon	rps10[1]	125399	125700					False	-1.0
+79	exon	nad2[2]	128478	128870					False	-1.0
+80	exon	nad2[1]	130083	130236					False	-1.0
+81	misc_feature	plastid-derived	151753	151852	plastid-derived				True	1.0
+82	gene	atp1	157288	158815					False	1.0
+83	CDS	atp1	157288	158815					False	1.0
+84	gene	rrnL	168189	171575					False	-1.0
+85	rRNA	rrnL	168189	171575					False	-1.0
+86	misc_feature	plastid-derived	182083	183105	plastid-derived				True	1.0
+87	misc_feature	plastid-derived	183190	184237	plastid-derived				True	1.0
+88	misc_feature	plastid-derived	184245	184457	plastid-derived				True	1.0
+89	gene	trnM-CAT	184297	184370					False	-1.0
+90	tRNA	trnM-CAT	184297	184370	anticodon:CAT				False	-1.0
+91	misc_feature	plastid-derived	184637	184890	plastid-derived				True	1.0
+92	gene	trnL-TAA	184803	184917					False	1.0
+93	tRNA	trnL-TAA	184803	184917	anticodon:TAA				False	1.0
+94	misc_feature	plastid-derived	185143	185282	plastid-derived				True	1.0
+95	gene	trnF-GAA	185186	185259					False	1.0
+96	tRNA	trnF-GAA	185186	185259	anticodon:GAA				False	1.0
+97	gene	trnS-TGA	189413	189500					False	1.0
+98	tRNA	trnS-TGA	189413	189500	anticodon:TGA				False	1.0
+99	gene	atp6	192366	193380					False	1.0
+100	CDS	atp6	192366	193380					False	1.0
+101	misc_feature	atp6	193241	193367	plastid-derived				True	1.0
+102	misc_feature	plastid-derived	193387	193526	plastid-derived				True	1.0
+103	gene	trnM-CAT	205695	205769					False	1.0
+104	tRNA	trnM-CAT	205695	205769	anticodon:CAT				False	1.0
+105	gene	rps19	210445	210730					False	1.0
+106	CDS	rps19	210445	210730					False	1.0
+107	gene	rps3	210743	213903					False	1.0
+108	CDS	rps3	210743	213903					False	1.0
+109	exon	rps3[1]	210743	210817					False	1.0
+110	exon	rps3[2]	212282	213903					False	1.0
+111	gene	rpl16	213832	214309					False	1.0
+112	CDS	rpl16	213832	214309					False	1.0
+113	misc_feature	plastid-derived	214775	214954	plastid-derived				True	1.0
+114	misc_feature	plastid-derived	222487	223128	plastid-derived				True	1.0
+115	misc_feature	plastid-derived	223259	223813	plastid-derived				True	1.0
+116	gene	nad5	227636	324145					False	
+117	CDS	nad5	227636	324145					False	
+118	exon	nad5[5]	227636	227783					False	-1.0
+119	exon	nad5[4]	228984	229379					False	-1.0
+120	misc_feature	plastid-derived	234385	234511	plastid-derived				True	1.0
+121	gene	trnD-GTC	234422	234496					False	-1.0
+122	tRNA	trnD-GTC	234422	234496	anticodon:GTC				False	-1.0
+123	gene	trnF-AAA	235428	235493					False	1.0
+124	tRNA	trnF-AAA	235428	235493	anticodon:AAA				False	1.0
+125	gene	trnW-CCA	235589	235663					False	1.0
+126	tRNA	trnW-CCA	235589	235663	anticodon:CCA				False	1.0
+127	gene	rrn5	235720	235839					False	-1.0
+128	rRNA	rrn5	235720	235839					False	-1.0
+129	gene	trnQ-CTG	235932	235993					False	-1.0
+130	tRNA	trnQ-CTG	235932	235993	anticodon:CTG				False	-1.0
+131	gene	rrnS	236028	237963					False	-1.0
+132	rRNA	rrnS	236028	237963					False	-1.0
+133	misc_feature	plastid-derived	238489	238753	plastid-derived				True	1.0
+134	misc_feature	plastid-derived	238807	239455	plastid-derived				True	1.0
+135	misc_feature	plastid-derived	239606	239711	plastid-derived				True	1.0
+136	exon	nad5[2]	247147	248363					False	-1.0
+137	exon	nad5[1]	249198	249428					False	-1.0
+138	gene	ccmFc1	250155	250638					False	-1.0
+139	CDS	ccmFc1	250155	250638					False	-1.0
+140	gene	cox1	256439	258997					False	-1.0
+141	CDS	cox1	256439	258997					False	-1.0
+142	exon	cox1[2]	256439	257297					False	-1.0
+143	exon	cox1[1]	258271	258997					False	-1.0
+144	gene	trnS-CGA	260103	260161					False	-1.0
+145	tRNA	trnS-CGA	260103	260161	anticodon:CGA				False	-1.0
+146	gene	atp9	266913	267234					False	-1.0
+147	CDS	atp9	266913	267234					False	-1.0
+148	gene	nad9	273771	274344					False	-1.0
+149	CDS	nad9	273771	274344					False	-1.0
+150	gene	trnQ-TTG	281699	281771					False	-1.0
+151	tRNA	trnQ-TTG	281699	281771	anticodon:TTG				False	-1.0
+152	gene	trnE-TTC	282720	282792					False	-1.0
+153	tRNA	trnE-TTC	282720	282792	anticodon:TTC				False	-1.0
+154	misc_feature	plastid-derived	282933	283409	plastid-derived				True	1.0
+155	gene	trnM-CAT	283016	283087					False	-1.0
+156	tRNA	trnM-CAT	283016	283087	anticodon:CAT				False	-1.0
+157	misc_feature	plastid-derived	283434	283776	plastid-derived				True	1.0
+158	misc_feature	plastid-derived	283823	284729	plastid-derived				True	1.0
+159	misc_feature	plastid-derived	284795	285951	plastid-derived				True	1.0
+160	gene	cob	290562	291738					False	-1.0
+161	CDS	cob	290562	291738					False	-1.0
+162	gene	rpl5	292283	292868					False	-1.0
+163	CDS	rpl5	292283	292868					False	-1.0
+164	gene	rps4	309670	310603					False	1.0
+165	CDS	rps4	309670	310603					False	1.0
+166	gene	trnC-GCA	322677	322748					False	1.0
+167	tRNA	trnC-GCA	322677	322748	anticodon:GCA				False	1.0
+168	exon	nad5[3]	324123	324145					False	1.0
+169	misc_feature	plastid-derived	329850	330165	plastid-derived				True	1.0
+170	misc_feature	plastid-derived	330210	330687	plastid-derived				True	1.0
+171	misc_feature	plastid-derived	330689	330999	plastid-derived				True	1.0
+172	gene	trnH-GTG	332194	332268					False	-1.0
+173	tRNA	trnH-GTG	332194	332268	anticodon:GTG				False	-1.0
+174	gene	trnM-CAT	333379	333453					False	1.0
+175	tRNA	trnM-CAT	333379	333453	anticodon:CAT				False	1.0
+176	gene	nad4	334617	342976					False	1.0
+177	CDS	nad4	334617	342976					False	1.0
+178	exon	nad4[1]	334617	335078					False	1.0
+179	exon	nad4[2]	336420	336935					False	1.0
+180	exon	nad4[3]	339947	340370					False	1.0
+181	exon	nad4[4]	342887	342976					False	1.0
+182	misc_feature	plastid-derived	346726	347012	plastid-derived				True	1.0
+183	gene	ccmFn	359376	361152					False	-1.0
+184	CDS	ccmFn	359376	361152					False	-1.0
+185	misc_feature	plastid-derived	364994	365463	plastid-derived				True	1.0
+186	misc_feature	plastid-derived	369125	370464	plastid-derived				True	1.0
+187	gene	ccmB	377200	377827					False	1.0
+188	CDS	ccmB	377200	377827					False	1.0
+189	gene	rpl10	378147	378636					False	-1.0
+190	CDS	rpl10	378147	378636					False	-1.0
+191	misc_feature	plastid-derived	385778	386003	plastid-derived				True	1.0
+192	misc_feature	plastid-derived	386015	386983	plastid-derived				True	1.0
+193	exon	nad1[1]	388395	388780					False	-1.0
+194	gene	cox2	392927	394962					False	-1.0
+195	CDS	cox2	392927	394962					False	-1.0
+196	exon	cox2[2]	392927	393319					False	-1.0
+197	exon	cox2[1]	394580	394962					False	-1.0

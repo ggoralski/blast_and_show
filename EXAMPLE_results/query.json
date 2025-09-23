@@ -1,0 +1,10 @@
+{
+    "description": {
+        "seq_description": {
+            "seq_len": 6001,
+            "description": "Tested_sequence",
+            "name": "Tested_sequence"
+        }
+    },
+    "features": {}
+}
