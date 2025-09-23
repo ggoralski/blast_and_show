@@ -1,4 +1,4 @@
-# BLAST and Show (v. 0.1)
+# BLAST and Show (v. 0.1.0)
 
 ## Overview
 
