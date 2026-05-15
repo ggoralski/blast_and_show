@@ -1,138 +1,90 @@
-"""
-BLAST and Show - Sequence Alignment Visualization Tool
-
-This module provides the main entry point for performing BLAST searches between query and subject
-sequences and generating visualizations of the results. It supports multiple input formats including
-GenBank files, FASTA files, and GenBank accession numbers.
-
-The program performs the following steps:
-1. Parse command line arguments for input sequences and parameters
-2. Process input sequences (download from GenBank if needed)
-3. Run local BLAST search
-4. Generate visualizations in multiple formats (SVG, PDF, PNG)
-
-Author: [Author Name]
-Date: [Date]
-Version: 1.0
-"""
-
-from argparse import ArgumentParser
+from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import dataimport as di
 import blasting as bl
 import draw as dr
 import os
+import sys
 import shutil
 
-
 def parse_arguments():
-    """
-    Parse command line arguments for the BLAST and visualization pipeline.
-    
-    This function sets up the argument parser with all necessary options for input sequences,
-    output settings, and BLAST parameters. It supports flexible input methods including
-    GenBank accession numbers, GenBank files, and FASTA files.
-    
-    Returns:
-        tuple: A tuple containing all parsed arguments in the following order:
-            - query_acc (str): Query accession number
-            - subject_acc (str): Subject accession number  
-            - query_fasta_file (str): Path to query FASTA file
-            - query_gb_file (str): Path to query GenBank file
-            - subject_fasta_file (str): Path to subject FASTA file
-            - subject_gb_file (str): Path to subject GenBank file
-            - title (str): Title for graphics
-            - min_len (int): Minimum alignment length to display
-            - email (str): Email address for NCBI queries
-            - output_dir (str): Output directory path
-            - e_value (float): E-value threshold for BLAST
-    
-    Note:
-        Either accession numbers OR files must be provided for both query and subject.
-        Email is required when using accession numbers.
-    """
     parser = ArgumentParser(
-        usage='Usage:\npython blast_and_show.py [options]',
-        description='Performs BLAST search between query and subject sequences and generates visualizations.\n'
-                   'Supports GenBank files, FASTA files, and GenBank accession numbers as input.\n'
-                   'Outputs include BLAST results and sequence alignment visualizations in multiple formats.'
+        formatter_class=RawDescriptionHelpFormatter,
+        usage='python blast_and_show.py [-q QUERY_ACC | -Q QUERY_GB | -a QUERY_FASTA]\n'
+              '                          [-s SUBJECT_ACC | -S SUBJECT_GB | -b SUBJECT_FASTA]\n'
+              '                          [-o OUTPUT_DIR] [-e EMAIL] [-c CONFIG]\n'
+              '                          [-t TITLE] [-m MINLEN] [-v E_VALUE]',
+        description=
+            'Runs a local blastn comparison between two DNA sequences (query and subject) '
+            'and produces a graphical visualisation of the alignments overlaid on both '
+            'sequences with their annotated features (genes, CDS, tRNA, rRNA, misc_features).\n\n'
+            'For each sequence you must provide ONE of:\n'
+            '  - GenBank accession number (downloaded automatically; requires -e EMAIL)\n'
+            '  - local GenBank file (.gb) — provides full feature annotation\n'
+            '  - local FASTA file — no features will be drawn for that sequence\n\n'
+            'Output (in OUTPUT_DIR) includes:\n'
+            '  - blast_results.tsv / .xml — BLAST results in tabular and XML formats\n'
+            '  - out_draw.svg / .pdf / .png — visualisations of the alignments\n'
+            '  - aligned_query-*.fasta, aligned_subject-*.fasta — aligned regions\n'
+            '  - copy of the configuration file used (settings.json)\n'
     )
 
-    # Query sequence options
     parser.add_argument("-q", "--query", dest="query", default="",
-                        help="Query accession number in GenBank. Required if query file is not provided.")
-    parser.add_argument("-a", "--query_gb_file", dest="query_gb_file", default="",
-                        help="GenBank format (gb) file for query sequence. Required if query accession is not provided.")
-    parser.add_argument("-b", "--query_fasta_file", dest="query_fasta_file", default="",
-                        help="FASTA file with query sequence(s). Can be used with query accession or gb file.")
+                        help="Query accession number in GenBank. Use INSTEAD of -Q/-a. "
+                             "Requires -e EMAIL.")
+    parser.add_argument("-Q", "--query_gb_file", dest="query_gb_file", default="",
+                        help="Local GenBank (.gb) file for the query sequence. "
+                             "Use INSTEAD of -q/-a. Provides feature annotation.")
+    parser.add_argument("-a", "--query_fasta_file", dest="query_fasta_file", default="",
+                        help="Local FASTA file for the query sequence. "
+                             "Use INSTEAD of -q/-Q. No features will be drawn.")
 
-    # Subject sequence options
     parser.add_argument("-s", "--subject", dest="subject", default="",
-                        help="Subject accession number in GenBank. Required if subject file is not provided.")
-    parser.add_argument("-c", "--subject_gb_file", dest="subject_gb_file", default="",
-                        help="GenBank format (gb) file for subject sequence. Required if subject accession is not provided.")
-    parser.add_argument("-d", "--subject_fasta_file", dest="subject_fasta_file", default="",
-                        help="FASTA file with subject sequence. Can be used with subject accession or gb file.")
+                        help="Subject accession number in GenBank. Use INSTEAD of -S/-b. "
+                             "Requires -e EMAIL.")
+    parser.add_argument("-S", "--subject_gb_file", dest="subject_gb_file", default="",
+                        help="Local GenBank (.gb) file for the subject sequence. "
+                             "Use INSTEAD of -s/-b. Provides feature annotation.")
+    parser.add_argument("-b", "--subject_fasta_file", dest="subject_fasta_file", default="",
+                        help="Local FASTA file for the subject sequence. "
+                             "Use INSTEAD of -s/-S. No features will be drawn.")
 
-    # Output and visualization options
-    parser.add_argument("-t", "--title", dest="title", default="Results of blastn",
-                        help="Title of graphics, also used (without spaces) as the name of graphics files.")
-    parser.add_argument("-o", "--output_dir", dest="output_dir", default='output',
-                        help="Output directory. Default: output")
-    
-    # BLAST parameters
-    parser.add_argument("-v", "--e_value", dest="e_value", default=1e-10,
-                        help="E-value threshold for BLAST. Default: 1e-10")
-    parser.add_argument("-m", "--minlen", dest="minlen", default=100,
-                        help="Minimum length (bp) of alignments to draw. Default: 100")
-    
-    # NCBI requirements
     parser.add_argument("-e", "--email", dest="email", default='',
-                        help="Your email address (required by NCBI when using accession numbers).")
+                        help="Your real e-mail address. Required by NCBI when downloading "
+                             "sequences by accession number (-q / -s).")
+    parser.add_argument("-o", "--output_dir", dest="output_dir", default='output',
+                        help="Output directory. Will be created if it does not exist. "
+                             "Default: output")
+    parser.add_argument("-c", "--config", dest="config_file", default="settings.json",
+                        help="Path to JSON configuration file with drawing settings "
+                             "(geometry, fonts, colours, feature filters). "
+                             "Default: settings.json. Two ready-made profiles are provided: "
+                             "settings_short.json (1-15 kb sequences) and "
+                             "settings_long.json (200-800 kb sequences).")
+
+    parser.add_argument("-t", "--title", dest="title", default="Results of blastn",
+                        help='Title displayed on the graphic. Default: "Results of blastn".')
+    parser.add_argument("-m", "--minlen", dest="minlen", default=100,
+                        help="Minimum alignment length (bp) to draw. Shorter alignments "
+                             "will be filtered out. Default: 100.")
+    parser.add_argument("-v", "--e_value", dest="e_value", default=1e-10,
+                        help="E-value threshold for BLAST. Default: 1e-10.")
 
     args = parser.parse_args()
-    
-    # Extract all arguments
-    query_acc = args.query
-    subject_acc = args.subject
-    query_fasta_file = args.query_fasta_file
-    query_gb_file = args.query_gb_file
-    subject_fasta_file = args.subject_fasta_file
-    subject_gb_file = args.subject_gb_file
-    title = args.title
-    min_len = int(args.minlen)
-    email = args.email
-    output_dir = args.output_dir
-    e_value = args.e_value
 
-    return query_acc, subject_acc, query_fasta_file, query_gb_file, subject_fasta_file, subject_gb_file, title, min_len, email, output_dir, e_value
+    return (args.query, args.subject,
+            args.query_fasta_file, args.query_gb_file,
+            args.subject_fasta_file, args.subject_gb_file,
+            args.title, int(args.minlen), args.email,
+            args.output_dir, args.e_value, args.config_file)
 
 
 def main():
-    """
-    Main function that orchestrates the entire BLAST and visualization pipeline.
-    
-    This function:
-    1. Parses command line arguments
-    2. Creates output directory if needed
-    3. Processes input sequences (downloads from GenBank if necessary)
-    4. Copies settings file to output directory
-    5. Runs BLAST search
-    6. Generates visualizations
-    
-    The function handles all the coordination between different modules and ensures
-    proper file management and directory structure.
-    
-    Raises:
-        SystemExit: If required arguments are missing or invalid
-        OSError: If output directory cannot be created
-        Various exceptions from called modules for file I/O, network, or BLAST errors
-    """
-    # Parse command line arguments
-    query_acc, subject_acc, query_fasta_file, query_gb_file, \
-    subject_fasta_file, subject_gb_file, title, min_len, email, \
-    output_dir, e_value = parse_arguments()
-    
-    # Display parsed options for user verification
+    (query_acc, subject_acc,
+     query_fasta_file, query_gb_file,
+     subject_fasta_file, subject_gb_file,
+     title, min_len, email,
+     output_dir, e_value, config_file) = parse_arguments()
+
     print(f'''Options:
         {query_acc = }
         {subject_acc = }
@@ -145,43 +97,39 @@ def main():
         {email = }
         {output_dir = }
         {e_value = }
+        {config_file = }
     ''')
-    
-    # Create output directory if it doesn't exist
+
+    # Sprawdzenie pliku konfiguracyjnego
+    if not os.path.isfile(config_file):
+        print(f'ERROR: Configuration file "{config_file}" not found.')
+        sys.exit(1)
+
     if os.path.exists(output_dir):
-        print(f'Output directory {output_dir} exists. Using existing directory.')
+        print(f'Output directory {output_dir} exists. I will use it.')
     else:
         print(f'Creating output directory: {output_dir}')
         os.makedirs(output_dir)
 
-    # Process input sequences - download from GenBank if needed, convert formats
-    print("Processing query sequence...")
     query_gb_file, query_fasta_file, query_json_file = di.process_input_sequences(
-        'query', query_acc, query_gb_file, query_fasta_file, output_dir, email
-    )
-    
-    print("Processing subject sequence...")
+        'query', query_acc, query_gb_file, query_fasta_file, output_dir, email)
     subject_gb_file, subject_fasta_file, subject_json_file = di.process_input_sequences(
-        'subject', subject_acc, subject_gb_file, subject_fasta_file, output_dir, email
-    )
-    
-    # Copy settings file to output directory for visualization configuration
-    shutil.copy("settings.json", output_dir)
-    
-    # Change to output directory for BLAST operations
+        'subject', subject_acc, subject_gb_file, subject_fasta_file, output_dir, email)
+
+    # Kopiowanie pliku konfiguracyjnego do output_dir jako settings.json
+    # (draw.py szuka pliku o tej nazwie w bieżącym katalogu)
+    target_config = os.path.join(output_dir, "settings.json")
+    if os.path.abspath(config_file) != os.path.abspath(target_config):
+        shutil.copy(config_file, target_config)
+        print(f'Configuration "{config_file}" copied to "{target_config}".')
+    else:
+        print(f'Using configuration in place: {target_config}')
+
     main_dir = os.getcwd()
     os.chdir(output_dir)
-    
-    # Run BLAST search
-    print("Running BLAST search...")
     xml_file, tsv_file = bl.run_local_blast(query_fasta_file, subject_fasta_file, e_value)
-    
-    # Generate visualizations
-    print("Generating visualizations...")
+    #os.chdir(main_dir)
     dr.run(os.path.basename(query_json_file), os.path.basename(subject_json_file), tsv_file)
-    
-    print("Pipeline completed successfully!")
-
 
 if __name__ == "__main__":
     main()
