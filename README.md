@@ -431,3 +431,35 @@ At least one alignment has `pident` below `min_scale` (default 70). Lower
 
 **Features below the subject line are cut off**
 Increase `bottom_margin` (or `main_height`) in the configuration file.
+
+---
+
+## How to cite
+
+If you use this software in your research or it contributes to a publication,
+we would appreciate it if you cited the following paper:
+
+> Denysenko-Bennett, M., Kwolek, D., Góralski, G., Szklarczyk, M.,
+> Piwowarczyk, R., Stefanović, S., Schneider, A. C. & Joachimiak, A. J.
+> Horizontal gene transfer of the Pytheas sequence from *Cuscuta* to
+> *Orobanche* via a host-mediated pathway. *Scientific Reports* **16**,
+> 2056 (2026). https://doi.org/10.1038/s41598-025-31853-x
+
+BibTeX:
+
+```bibtex
+@article{DenysenkoBennett2026Pytheas,
+  author  = {Denysenko-Bennett, Magdalena and Kwolek, Dagmara and
+             G{\'o}ralski, Grzegorz and Szklarczyk, Marek and
+             Piwowarczyk, Renata and Stefanovi{\'c}, Sa{\v s}a and
+             Schneider, Adam C. and Joachimiak, Andrzej J.},
+  title   = {Horizontal gene transfer of the {Pytheas} sequence from
+             \textit{Cuscuta} to \textit{Orobanche} via a host-mediated pathway},
+  journal = {Scientific Reports},
+  volume  = {16},
+  number  = {1},
+  pages   = {2056},
+  year    = {2026},
+  doi     = {10.1038/s41598-025-31853-x}
+}
+```

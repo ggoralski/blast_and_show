@@ -431,3 +431,35 @@ Zmniejsz `min_scale` w pliku konfiguracyjnym.
 
 **Features pod linią subject są ucinane**
 Zwiększ `bottom_margin` (lub `main_height`) w pliku konfiguracyjnym.
+
+---
+
+## Jak cytować
+
+Jeśli używasz tego programu w swoich badaniach lub przyczynił się on do
+powstania publikacji, będziemy wdzięczni za zacytowanie poniższego artykułu:
+
+> Denysenko-Bennett, M., Kwolek, D., Góralski, G., Szklarczyk, M.,
+> Piwowarczyk, R., Stefanović, S., Schneider, A. C. & Joachimiak, A. J.
+> Horizontal gene transfer of the Pytheas sequence from *Cuscuta* to
+> *Orobanche* via a host-mediated pathway. *Scientific Reports* **16**,
+> 2056 (2026). https://doi.org/10.1038/s41598-025-31853-x
+
+BibTeX:
+
+```bibtex
+@article{DenysenkoBennett2026Pytheas,
+  author  = {Denysenko-Bennett, Magdalena and Kwolek, Dagmara and
+             G{\'o}ralski, Grzegorz and Szklarczyk, Marek and
+             Piwowarczyk, Renata and Stefanovi{\'c}, Sa{\v s}a and
+             Schneider, Adam C. and Joachimiak, Andrzej J.},
+  title   = {Horizontal gene transfer of the {Pytheas} sequence from
+             \textit{Cuscuta} to \textit{Orobanche} via a host-mediated pathway},
+  journal = {Scientific Reports},
+  volume  = {16},
+  number  = {1},
+  pages   = {2056},
+  year    = {2026},
+  doi     = {10.1038/s41598-025-31853-x}
+}
+```
